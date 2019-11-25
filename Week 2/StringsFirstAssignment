@@ -1,0 +1,58 @@
+
+/**
+ * Write a description of Part1 here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Part1 {
+    public String findSimpleGene(String DNA){
+        String Gene = "";
+        int startIndex = DNA.indexOf("ATG");
+        if (startIndex == -1)//no ATG
+        {
+            return "There is no ATG";
+        }
+        int stopIndex = DNA.indexOf("TAA", startIndex+3);
+        if (stopIndex == -1)//no TAA
+        {
+            return "There is no TAA";
+        }
+        if ((startIndex-stopIndex)%3 == 0)
+        {
+            Gene = DNA.substring(startIndex,stopIndex+3);
+        } else {
+            return "This is not a gene";
+        }
+        return Gene;
+    }
+    
+    public void testFindSimpleGene()
+    {
+          String Gene = "";
+          String DNA = "AAAATACCAGTACCACTAAGGA";
+          System.out.println("DNA Strand is = " + DNA);
+          Gene = findSimpleGene(DNA);
+
+          
+          DNA = "ATCATGAACAACGGA";
+          System.out.println("There is a Strand = " + DNA);
+          Gene = findSimpleGene(DNA);
+          System.out.println("Gene is = " + Gene);
+          
+          DNA = "ATCGAATCCAAT";
+          System.out.println("There is a Strand = " + DNA);
+          Gene = findSimpleGene(DNA);
+          System.out.println("Gene is = " + Gene);
+          
+          DNA = "ATCATCATGGTGGTTTAAGAC";
+          System.out.println("There is a Strand = " + DNA);
+          Gene = findSimpleGene(DNA);
+          System.out.println("Gene is = " + Gene);
+          
+          DNA = "ATGCGCCGTAA";
+          System.out.println("There is a Strand = " + DNA);
+          Gene = findSimpleGene(DNA);
+          System.out.println("Gene is = " + Gene);
+    }
+}
